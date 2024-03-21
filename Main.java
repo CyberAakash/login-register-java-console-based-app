@@ -49,23 +49,27 @@ public class Main {
     }
 
     void customerRegister() {
-        System.out.println("\nPlease enter your details.");
-        System.out.println("\nDetails needed: {id, name, pass, age, gender (M or F).");
-        int id = sc.nextInt();
-        for(customer c: customerObj) {
+        int id = -1;
+        boolean isValid = false;
+        while (!isValid) {
             System.out.println("\nPlease enter your details.");
             System.out.println("\nDetails needed: {id, name, pass, age, gender (M or F).");
             id = sc.nextInt();
-            if(c.id == id) {
-                System.out.println("Oops! Id already exist. Try with another ID.");
-                break;
+            for (customer c : customerObj) {
+                if (c.id == id) {
+                    System.out.println("Oops! Id already exist. Try with another ID.");
+                    isValid = false;
+                    break;
+                } else {
+                    isValid = true;
+                }
             }
         }
         String name = sc.next();
         String pass = sc.next();
         int age = sc.nextInt();
         char gender = sc.next().charAt(0);
-        customerObj.add(new customer(id, name, pass, age,gender));
+        customerObj.add(new customer(id, name, pass, age, gender));
         System.out.println("Wow! Account Successfully created.");
     }
 
